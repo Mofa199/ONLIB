@@ -1,0 +1,70 @@
+{% include 'shared/header.html' %}
+
+<main class="admin-dashboard">
+  <h1>Admin Dashboard</h1>
+
+  <section class="admin-actions">
+    <div class="card">
+      <h2>Add Course / Module / Topic</h2>
+      <form>
+        <input type="text" placeholder="Course Name" />
+        <input type="text" placeholder="Module Name" />
+        <input type="text" placeholder="Topic Name" />
+        <button type="submit">Add</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Add Content</h2>
+      <form enctype="multipart/form-data">
+        <input type="text" placeholder="Title" />
+        <textarea placeholder="Description"></textarea>
+        <input type="text" placeholder="YouTube Link" />
+        <input type="file" />
+        <input type="url" placeholder="PDF Link (Optional)" />
+        <select>
+          <option>Article</option>
+          <option>PDF</option>
+          <option>Video</option>
+        </select>
+        <button type="submit">Upload</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Add New User</h2>
+      <form>
+        <input type="text" placeholder="Name" />
+        <input type="email" placeholder="Email" />
+        <select>
+          <option>User</option>
+          <option>Admin</option>
+        </select>
+        <button type="submit">Create</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="container py-8">
+  <h2 class="text-2xl font-semibold text-[#213874] mb-6">Admin Panel</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <a href="{{ url_for('add_topic') }}" class="bg-[#f3ab1b] text-white p-4 rounded-xl shadow hover:shadow-md">
+      ➕ Add New Topic
+    </a>
+    <a href="#" class="bg-[#1a6ac3] text-white p-4 rounded-xl shadow hover:shadow-md">
+      📚 Add Module (coming)
+    </a>
+    <a href="#" class="bg-[#213874] text-white p-4 rounded-xl shadow hover:shadow-md">
+      👥 Add Users (coming)
+    </a>
+  </div>
+</div>
+{% endblock %}
+
+{% include 'shared/footer.html' %}

@@ -1,0 +1,46 @@
+{% include 'shared/header.html' %}
+
+<main class="topic-container">
+  <section class="topic-header">
+    <h1>Topic Title: <span id="topic-title">Heart Anatomy</span></h1>
+    <p class="summary">
+      <strong>Summary:</strong> This topic provides a detailed explanation of the anatomy of the human heart, including chambers, valves, and associated vessels.
+    </p>
+  </section>
+
+  <section class="topic-content">
+    <h2>Article</h2>
+    <p>
+      The heart is a muscular organ responsible for pumping blood through the circulatory system. It consists of four chambers:
+      two atria and two ventricles. The right side of the heart receives deoxygenated blood and pumps it to the lungs,
+      while the left side receives oxygenated blood and pumps it throughout the body.
+    </p>
+    <img src="{{ url_for('static', filename='img/heart_diagram.jpg') }}" alt="Heart Diagram" class="topic-image">
+  </section>
+
+  <section class="topic-video">
+    <h2>Illustration / Video</h2>
+    <iframe width="100%" height="400" src="https://www.youtube.com/embed/dxZCU4HvsvQ" frameborder="0"
+      allowfullscreen></iframe>
+  </section>
+
+  <section class="topic-downloads">
+    <h2>Downloadable PDFs</h2>
+    <ul>
+      <li><a href="/static/docs/heart_anatomy.pdf" target="_blank">Heart Anatomy Notes (PDF)</a></li>
+      <li><a href="/static/docs/heart_summary.pdf" target="_blank">Summary Sheet (PDF)</a></li>
+    </ul>
+  </section>
+
+  <section class="topic-flashcards">
+    <h2>Flashcards</h2>
+    <p>Flashcards will appear here (auto-generated)...</p>
+  </section>
+
+  <section class="topic-mnemonics">
+    <h2>Mnemonics</h2>
+    <p><strong>“LAB RAT”</strong> – Left Atrium = Bicuspid, Right Atrium = Tricuspid</p>
+  </section>
+</main>
+
+{% include 'shared/footer.html' %}

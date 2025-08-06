@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Add New Topic{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <h2 class="text-xl font-semibold mb-4 text-[#213874]">Add New Topic</h2>
+  <form method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+
+    <div class="mb-3">
+      {{ form.title.label(class="block text-sm font-medium text-gray-700") }}
+      {{ form.title(class="form-input w-full rounded-md") }}
+    </div>
+
+    <div class="mb-3">
+      {{ form.content.label(class="block text-sm font-medium text-gray-700") }}
+      {{ form.content(class="form-textarea w-full rounded-md", rows=6) }}
+    </div>
+
+    <div class="mb-3">
+      {{ form.summary.label(class="block text-sm font-medium text-gray-700") }}
+      {{ form.summary(class="form-textarea w-full rounded-md", rows=3) }}
+    </div>
+
+    <div class="mb-3">
+      {{ form.youtube_link.label(class="block text-sm font-medium text-gray-700") }}
+      {{ form.youtube_link(class="form-input w-full rounded-md") }}
+    </div>
+
+    <div class="mb-3">
+      {{ form.pdf_file.label(class="block text-sm font-medium text-gray-700") }}
+      {{ form.pdf_file(class="form-input w-full rounded-md") }}
+    </div>
+
+    <div class="mt-4">
+      {{ form.submit(class="bg-[#213874] text-white px-4 py-2 rounded hover:bg-[#1a6ac3]") }}
+    </div>
+  </form>
+</div>
+{% endblock %}

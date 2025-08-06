@@ -1,0 +1,77 @@
+{% include 'shared/header.html' %}
+<main class="courses-main">
+  <section class="course-selector">
+    <h2>Select Your Course</h2>
+    <div class="course-options">
+      <button onclick="selectCourse('Medical')">Medical</button>
+      <button onclick="selectCourse('Pharmacy')">Pharmacy</button>
+      <button onclick="selectCourse('Nursing')">Nursing</button>
+    </div>
+  </section>
+
+  <section class="course-content" id="course-content">
+    <!-- Dynamically loaded modules and topics -->
+  </section>
+
+  <section class="extras">
+    <div class="word-day">
+      <h3>Word of the Day</h3>
+      <p><strong>Analgesic</strong> - A drug that relieves pain.</p>
+    </div>
+    <div class="quiz-day">
+      <h3>Quiz of the Day</h3>
+      <p>Coming soon... 🚀</p>
+    </div>
+  </section>
+</main>
+
+<script>
+const courses = {
+  Medical: {
+    modules: {
+      Anatomy: ["Skeletal System", "Muscles", "Heart"],
+      Physiology: ["Blood", "Nerve Signals"]
+    }
+  },
+  Pharmacy: {
+    modules: {
+      Pharmacology: ["Drug Metabolism", "Receptors"],
+      Pharmaceutics: ["Dosage Forms", "Compounding"]
+    }
+  },
+  Nursing: {
+    modules: {
+      Fundamentals: ["Patient Care", "Vitals Monitoring"],
+      Pathology: ["Infection Control", "Wound Care"]
+    }
+  }
+};
+
+function selectCourse(courseName) {
+  const contentDiv = document.getElementById("course-content");
+  const data = courses[courseName];
+  let html = "<h2>" + courseName + " Modules</h2>";
+
+  for (const module in data.modules) {
+    html += "<div class='module'>";
+    html += "<button onclick='toggleTopics(this)'>" + module + "</button>";
+    html += "<ul class='topics' style='display:none;'>";
+
+    data.modules[module].forEach(function(topic) {
+      html += "<li>" + topic + "</li>";
+    });
+
+    html += "</ul></div>";
+  }
+
+  contentDiv.innerHTML = html;
+}
+
+function toggleTopics(button) {
+  const ul = button.nextElementSibling;
+  ul.style.display = ul.style.display === "none" ? "block" : "none";
+}
+</script>
+
+
+{% include 'shared/footer.html' %}

@@ -1,0 +1,41 @@
+{% include 'shared/header.html' %}
+<main>
+  <section class="hero">
+    <h1>Welcome to MediLibrary</h1>
+    <p>Your smart online library for medical education.</p>
+    <a href="/auth/login" class="cta-button">Get Started</a>
+  </section>
+
+  <section class="offers">
+    <h2>What We Offer</h2>
+    <div class="offer-cards">
+      <div class="card">Articles</div>
+      <div class="card">Video Lessons</div>
+      <div class="card">PDF Books</div>
+      <div class="card">Flashcards</div>
+    </div>
+  </section>
+
+  <section class="audience">
+    <h2>Made For</h2>
+    <div class="audience-cards">
+      <div class="card">Medical Students</div>
+      <div class="card">Pharmacy Students</div>
+      <div class="card">Nursing Students</div>
+    </div>
+  </section>
+
+  <section class="partners">
+    <h2>Our Partners</h2>
+    <div class="partners-logos">
+      <img src="{{ url_for('static', filename='images/logo-placeholder.png') }}" alt="Partner 1" />
+      <img src="{{ url_for('static', filename='images/logo-placeholder.png') }}" alt="Partner 2" />
+    </div>
+  </section>
+
+  <section class="word-day">
+    <h2>Word of the Day</h2>
+    <p><strong>Antipyretic</strong> - A drug used to prevent or reduce fever.</p>
+  </section>
+</main>
+{% include 'shared/footer.html' %}
