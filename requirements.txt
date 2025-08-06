@@ -2,3 +2,15 @@
 flask
 flask_sqlalchemy
 flask_login
+flask_wtf
+flask_migrate
+flask_mail
+flask_cors
+werkzeug
+wtforms
+requests
+openai
+python-dotenv
+pillow
+bcrypt
+gunicorn

@@ -1,0 +1,671 @@
+{% extends "base.html" %}
+
+{% block title %}MediCore Library - Modern Medical Education Platform{% endblock %}
+
+{% block extra_css %}
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #213874 0%, #1a6ac3 100%);
+        color: white;
+        padding: 120px 0 80px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="medical-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="2" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23medical-pattern)"/></svg>') repeat;
+        opacity: 0.1;
+        z-index: 1;
+    }
+    
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+    }
+    
+    .hero-cta {
+        font-size: 1.1rem;
+        padding: 15px 40px;
+        background: #f3ab1b;
+        border: none;
+        border-radius: 50px;
+        color: white;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+    
+    .hero-cta:hover {
+        background: #e09900;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(243, 171, 27, 0.4);
+        color: white;
+    }
+    
+    .feature-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2.5rem;
+        text-align: center;
+        height: 100%;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .feature-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1.5rem;
+        background: linear-gradient(135deg, #1a6ac3, #213874);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: white;
+    }
+    
+    .feature-title {
+        color: #213874;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        font-size: 1.25rem;
+    }
+    
+    .stats-section {
+        background: #213874;
+        color: white;
+        padding: 4rem 0;
+    }
+    
+    .stat-item {
+        text-align: center;
+    }
+    
+    .stat-number {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #f3ab1b;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+        font-size: 1.1rem;
+        opacity: 0.9;
+    }
+    
+    .word-of-day-card {
+        background: linear-gradient(135deg, #f3ab1b 0%, #e09900 100%);
+        color: white;
+        border-radius: 15px;
+        padding: 2rem;
+        text-align: center;
+    }
+    
+    .partners-section {
+        background: #f8f9fa;
+        padding: 4rem 0;
+    }
+    
+    .partner-logo {
+        height: 60px;
+        opacity: 0.7;
+        transition: opacity 0.3s ease;
+        filter: grayscale(100%);
+    }
+    
+    .partner-logo:hover {
+        opacity: 1;
+        filter: grayscale(0%);
+    }
+    
+    .cta-section {
+        background: linear-gradient(135deg, #1a6ac3 0%, #213874 100%);
+        color: white;
+        padding: 4rem 0;
+        text-align: center;
+    }
+    
+    .track-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        text-align: center;
+        height: 100%;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid transparent;
+    }
+    
+    .track-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .track-card.medical {
+        border-left-color: #213874;
+    }
+    
+    .track-card.nursing {
+        border-left-color: #1a6ac3;
+    }
+    
+    .track-card.pharmacy {
+        border-left-color: #f3ab1b;
+    }
+    
+    .track-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .track-card.medical .track-icon {
+        color: #213874;
+    }
+    
+    .track-card.nursing .track-icon {
+        color: #1a6ac3;
+    }
+    
+    .track-card.pharmacy .track-icon {
+        color: #f3ab1b;
+    }
+    
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2.5rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.1rem;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="hero-content animate-on-scroll">
+                    <h1 class="hero-title">Welcome to MediCore Library</h1>
+                    <p class="hero-subtitle">
+                        Empowering the next generation of healthcare professionals with comprehensive medical education resources, AI-powered learning, and innovative study tools.
+                    </p>
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('user.dashboard') }}" class="hero-cta">
+                            <i class="fas fa-tachometer-alt me-2"></i>Go to Dashboard
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('auth.login') }}" class="hero-cta">
+                            <i class="fas fa-rocket me-2"></i>Start Learning Today
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hero-image text-center">
+                    <img src="{{ url_for('static', filename='images/hero-medical.svg') }}" 
+                         alt="Medical Education" class="img-fluid" style="max-height: 400px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- What We Offer Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-5 fw-bold text-primary-custom mb-3">What We Offer</h2>
+                <p class="lead text-muted">
+                    Comprehensive medical education resources designed for modern healthcare professionals
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4 class="feature-title">Structured Courses</h4>
+                    <p class="text-muted">
+                        Comprehensive courses organized by modules and topics with interactive content, videos, and assessments.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h4 class="feature-title">Digital Library</h4>
+                    <p class="text-muted">
+                        Extensive collection of medical books, research papers, journals, and reference materials.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h4 class="feature-title">Pharmacology Tools</h4>
+                    <p class="text-muted">
+                        Drug databases, interaction checkers, dosage calculators, and clinical decision support tools.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h4 class="feature-title">AI Assistant</h4>
+                    <p class="text-muted">
+                        Powered by DeepSeek AI to help with research, explanations, summaries, and personalized learning.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4 class="feature-title">Progress Tracking</h4>
+                    <p class="text-muted">
+                        Advanced analytics to monitor learning progress with gamification and achievement systems.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h4 class="feature-title">Medical Calculators</h4>
+                    <p class="text-muted">
+                        Essential medical calculators including dosage, BMI, pregnancy dates, and clinical scores.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- To Whom Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-5 fw-bold text-primary-custom mb-3">Designed For</h2>
+                <p class="lead text-muted">
+                    Tailored learning paths for different healthcare specializations
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="track-card medical animate-on-scroll">
+                    <div class="track-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Medical Students</h4>
+                    <p class="text-muted">
+                        Comprehensive medical curriculum covering anatomy, physiology, pathology, and clinical medicine with case studies and diagnostic tools.
+                    </p>
+                    <ul class="list-unstyled text-start mt-3">
+                        <li><i class="fas fa-check text-success me-2"></i>Clinical Case Studies</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Diagnostic Imaging</li>
+                        <li><i class="fas fa-check text-success me-2"></i>OSCE Preparation</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Board Exam Resources</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="track-card nursing animate-on-scroll">
+                    <div class="track-icon">
+                        <i class="fas fa-user-nurse"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Nursing Students</h4>
+                    <p class="text-muted">
+                        Evidence-based nursing education with patient care protocols, nursing procedures, and healthcare management fundamentals.
+                    </p>
+                    <ul class="list-unstyled text-start mt-3">
+                        <li><i class="fas fa-check text-success me-2"></i>Patient Care Plans</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Nursing Procedures</li>
+                        <li><i class="fas fa-check text-success me-2"></i>NCLEX Preparation</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Clinical Skills</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="track-card pharmacy animate-on-scroll">
+                    <div class="track-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Pharmacy Students</h4>
+                    <p class="text-muted">
+                        Comprehensive pharmaceutical education covering drug mechanisms, interactions, clinical pharmacy, and patient counseling.
+                    </p>
+                    <ul class="list-unstyled text-start mt-3">
+                        <li><i class="fas fa-check text-success me-2"></i>Drug Interactions</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Clinical Pharmacy</li>
+                        <li><i class="fas fa-check text-success me-2"></i>NAPLEX Preparation</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Patient Counseling</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">Trusted by Students Worldwide</h2>
+                <p class="lead opacity-75">
+                    Join thousands of healthcare professionals advancing their education
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4 text-center">
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item animate-on-scroll">
+                    <span class="stat-number" data-target="{{ stats.total_courses }}">{{ stats.total_courses }}</span>
+                    <div class="stat-label">Courses Available</div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item animate-on-scroll">
+                    <span class="stat-number" data-target="{{ stats.total_topics }}">{{ stats.total_topics }}</span>
+                    <div class="stat-label">Learning Topics</div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item animate-on-scroll">
+                    <span class="stat-number" data-target="{{ stats.total_resources }}">{{ stats.total_resources }}</span>
+                    <div class="stat-label">Resources</div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item animate-on-scroll">
+                    <span class="stat-number" data-target="{{ stats.active_users }}">{{ stats.active_users }}</span>
+                    <div class="stat-label">Active Students</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Word of the Day Section -->
+{% if word_of_day %}
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="word-of-day-card animate-on-scroll">
+                    <h3 class="fw-bold mb-3">
+                        <i class="fas fa-lightbulb me-2"></i>Word of the Day
+                    </h3>
+                    <h4 class="mb-3">{{ word_of_day.word }}</h4>
+                    {% if word_of_day.pronunciation %}
+                    <p class="mb-2"><strong>Pronunciation:</strong> {{ word_of_day.pronunciation }}</p>
+                    {% endif %}
+                    <p class="mb-3"><strong>Definition:</strong> {{ word_of_day.definition }}</p>
+                    {% if word_of_day.example %}
+                    <p class="mb-0"><strong>Example:</strong> {{ word_of_day.example }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Partners Section -->
+<section class="partners-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-5 fw-bold text-primary-custom mb-3">Our Partners</h2>
+                <p class="lead text-muted">
+                    Collaborating with leading medical institutions and organizations
+                </p>
+            </div>
+        </div>
+        
+        <div class="row align-items-center justify-content-center g-4">
+            <div class="col-lg-2 col-md-3 col-4 text-center">
+                <img src="{{ url_for('static', filename='images/partners/partner-1.png') }}" 
+                     alt="University of Medical Sciences" class="partner-logo img-fluid">
+            </div>
+            <div class="col-lg-2 col-md-3 col-4 text-center">
+                <img src="{{ url_for('static', filename='images/partners/partner-2.png') }}" 
+                     alt="Global Health Institute" class="partner-logo img-fluid">
+            </div>
+            <div class="col-lg-2 col-md-3 col-4 text-center">
+                <img src="{{ url_for('static', filename='images/partners/partner-3.png') }}" 
+                     alt="Medical Publishers Alliance" class="partner-logo img-fluid">
+            </div>
+            <div class="col-lg-2 col-md-3 col-4 text-center">
+                <img src="{{ url_for('static', filename='images/partners/partner-4.png') }}" 
+                     alt="Healthcare Innovation Hub" class="partner-logo img-fluid">
+            </div>
+            <div class="col-lg-2 col-md-3 col-4 text-center">
+                <img src="{{ url_for('static', filename='images/partners/partner-5.png') }}" 
+                     alt="Medical Research Foundation" class="partner-logo img-fluid">
+            </div>
+            <div class="col-lg-2 col-md-3 col-4 text-center">
+                <img src="{{ url_for('static', filename='images/partners/partner-6.png') }}" 
+                     alt="International Health Organization" class="partner-logo img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Popular Resources Section -->
+{% if popular_resources %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-5 fw-bold text-primary-custom mb-3">Popular Resources</h2>
+                <p class="lead text-muted">
+                    Most accessed educational materials by our community
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            {% for resource in popular_resources %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 animate-on-scroll">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge bg-accent">{{ resource.resource_type.title() }}</span>
+                            <small class="text-muted">{{ resource.view_count }} views</small>
+                        </div>
+                        <h5 class="card-title">{{ resource.title }}</h5>
+                        <p class="card-text text-muted">
+                            {{ resource.description[:100] }}{% if resource.description|length > 100 %}...{% endif %}
+                        </p>
+                        {% if resource.author %}
+                        <small class="text-muted">by {{ resource.author }}</small>
+                        {% endif %}
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('library.resource_detail', resource_id=resource.id) }}" 
+                           class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-eye me-1"></i>View Resource
+                        </a>
+                        {% else %}
+                        <a href="{{ url_for('auth.login') }}" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-sign-in-alt me-1"></i>Login to Access
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-4">
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('library.index') }}" class="btn btn-primary">
+                <i class="fas fa-book me-2"></i>Explore All Resources
+            </a>
+            {% else %}
+            <a href="{{ url_for('auth.login') }}" class="btn btn-primary">
+                <i class="fas fa-sign-in-alt me-2"></i>Login to Explore
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Call to Action Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="display-5 fw-bold mb-3">Ready to Start Your Medical Education Journey?</h2>
+                <p class="lead mb-4 opacity-75">
+                    Join thousands of healthcare professionals who are advancing their careers with MediCore Library
+                </p>
+                {% if current_user.is_authenticated %}
+                <a href="{{ url_for('course.index') }}" class="btn btn-accent btn-lg me-3">
+                    <i class="fas fa-graduation-cap me-2"></i>Browse Courses
+                </a>
+                <a href="{{ url_for('library.index') }}" class="btn btn-outline-light btn-lg">
+                    <i class="fas fa-book me-2"></i>Explore Library
+                </a>
+                {% else %}
+                <a href="{{ url_for('auth.login') }}" class="btn btn-accent btn-lg me-3">
+                    <i class="fas fa-rocket me-2"></i>Get Started Now
+                </a>
+                <a href="{{ url_for('main.about') }}" class="btn btn-outline-light btn-lg">
+                    <i class="fas fa-info-circle me-2"></i>Learn More
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // Animate statistics numbers
+    $('.stat-number').each(function() {
+        const $this = $(this);
+        const target = parseInt($this.data('target'));
+        
+        $({ counter: 0 }).animate({ counter: target }, {
+            duration: 2000,
+            easing: 'swing',
+            step: function() {
+                $this.text(Math.ceil(this.counter));
+            }
+        });
+    });
+    
+    // Smooth scroll for anchor links
+    $('a[href^="#"]').on('click', function(e) {
+        e.preventDefault();
+        const target = $(this.getAttribute('href'));
+        if (target.length) {
+            $('html, body').animate({
+                scrollTop: target.offset().top - 80
+            }, 800);
+        }
+    });
+    
+    // Add scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-fade-up');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+    });
+    
+    // Parallax effect for hero section
+    $(window).scroll(function() {
+        const scrolled = $(window).scrollTop();
+        const parallax = $('.hero-section');
+        const speed = scrolled * 0.5;
+        
+        parallax.css('background-position', 'center ' + speed + 'px');
+    });
+});
+</script>
+{% endblock %}
