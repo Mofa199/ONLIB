@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify
-from flask_login import current_user
+from flask_login import current_user, login_required
 from app.models.models import db, Course, NewsArticle, WordOfTheDay, QuizOfTheDay, FAQ, ContactMessage, Resource, Topic
 from datetime import date, datetime
 import json
@@ -8,6 +8,10 @@ main_bp = Blueprint('main', __name__)
 
 @main_bp.route('/')
 def index():
+    # Redirect unauthenticated users to login page
+    if not current_user.is_authenticated:
+        return redirect(url_for('auth.login'))
+    
     # Get featured content for home page
     featured_courses = Course.query.filter_by(is_active=True).limit(3).all()
     latest_news = NewsArticle.query.filter_by(is_published=True)\
@@ -36,6 +40,12 @@ def index():
                          word_of_day=word_of_day,
                          popular_resources=popular_resources,
                          stats=stats)
+
+@main_bp.route('/home')
+@login_required
+def home():
+    # Alternative route for home page (authenticated users only)
+    return redirect(url_for('main.index'))
 
 @main_bp.route('/about')
 def about():
