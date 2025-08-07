@@ -12,6 +12,9 @@ admin_bp = Blueprint('admin', __name__)
 
 def admin_required(f):
     """Decorator to require admin access"""
+    from functools import wraps
+    
+    @wraps(f)
     def decorated_function(*args, **kwargs):
         if not current_user.is_authenticated or not current_user.is_admin:
             flash('Access denied. Admin privileges required.', 'error')

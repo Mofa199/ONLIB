@@ -11,7 +11,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Initialize extensions
-db = SQLAlchemy()
 migrate = Migrate()
 login_manager = LoginManager()
 mail = Mail()
@@ -35,6 +34,9 @@ def create_app():
     
     # AI Configuration
     app.config['DEEPSEEK_API_KEY'] = os.environ.get('DEEPSEEK_API_KEY')
+    
+    # Initialize database
+    from app.models.models import db
     
     # Initialize extensions with app
     db.init_app(app)
@@ -74,23 +76,5 @@ def create_app():
     app.register_blueprint(admin_bp, url_prefix='/admin')
     app.register_blueprint(user_bp, url_prefix='/user')
     app.register_blueprint(ai_bp, url_prefix='/ai')
-    
-    # Create database tables
-    with app.app_context():
-        db.create_all()
-        
-        # Create default admin user if not exists
-        from app.models.models import User
-        admin = User.query.filter_by(email='admin@medicore.com').first()
-        if not admin:
-            admin = User(
-                name='Admin User',
-                email='admin@medicore.com',
-                is_admin=True,
-                track='Medical'
-            )
-            admin.set_password('admin123')
-            db.session.add(admin)
-            db.session.commit()
     
     return app
