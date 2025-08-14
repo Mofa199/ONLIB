@@ -146,11 +146,11 @@ def signup():
             if request.is_json:
                 return jsonify({
                     'success': True, 
-                    'message': 'Registration successful! Welcome to MediCore Library.',
+                    'message': 'Registration successful! Welcome to TAMSA Library.',
                     'redirect_url': url_for('user.dashboard')
                 })
             
-            flash('Registration successful! Welcome to MediCore Library.', 'success')
+            flash('Registration successful! Welcome to TAMSA Library.', 'success')
             return redirect(url_for('user.dashboard'))
             
         except Exception as e:

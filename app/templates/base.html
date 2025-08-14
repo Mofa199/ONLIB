@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}MediCore Library - Modern Medical Education Platform{% endblock %}</title>
+    <title>{% block title %}TAMSA Library - Modern Medical Education Platform{% endblock %}</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
@@ -19,6 +19,7 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dark-mode.css') }}" id="dark-theme-style" disabled>
     
     {% block extra_css %}{% endblock %}
 </head>
@@ -35,8 +36,8 @@
         <div class="container">
             <!-- Logo -->
             <a class="navbar-brand d-flex align-items-center" href="{{ url_for('main.index') }}">
-                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MediCore Library" height="40" class="me-2">
-                <span class="fw-bold text-primary">MediCore Library</span>
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="TAMSA Library" height="40" class="me-2">
+                <span class="fw-bold text-primary">TAMSA Library</span>
             </a>
 
             <!-- Mobile Toggle -->
@@ -93,6 +94,13 @@
                     </div>
                 </form>
                 {% endif %}
+
+                <!-- Theme Switcher -->
+                <div class="d-flex align-items-center me-2">
+                    <button class="btn btn-outline-secondary btn-sm" id="theme-switcher">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
 
                 <!-- User Menu -->
                 <ul class="navbar-nav">
@@ -203,8 +211,8 @@
             <div class="row">
                 <div class="col-lg-4 mb-4">
                     <div class="d-flex align-items-center mb-3">
-                        <img src="{{ url_for('static', filename='images/logo-white.png') }}" alt="MediCore Library" height="40" class="me-2">
-                        <span class="h5 mb-0 fw-bold">MediCore Library</span>
+                        <img src="{{ url_for('static', filename='images/logo-white.png') }}" alt="TAMSA Library" height="40" class="me-2">
+                        <span class="h5 mb-0 fw-bold">TAMSA Library</span>
                     </div>
                     <p class="text-muted">
                         Empowering the next generation of healthcare professionals with comprehensive medical education resources.
@@ -269,7 +277,7 @@
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <p class="text-muted mb-0">
-                        &copy; 2024 MediCore Library. All rights reserved.
+                        &copy; 2024 TAMSA Library. All rights reserved.
                     </p>
                 </div>
                 <div class="col-md-6 text-md-end">

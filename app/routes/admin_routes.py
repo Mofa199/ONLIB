@@ -7,11 +7,13 @@ from datetime import datetime, date
 from werkzeug.utils import secure_filename
 import os
 import json
+from functools import wraps
 
 admin_bp = Blueprint('admin', __name__)
 
 def admin_required(f):
     """Decorator to require admin access"""
+    @wraps(f)
     def decorated_function(*args, **kwargs):
         if not current_user.is_authenticated or not current_user.is_admin:
             flash('Access denied. Admin privileges required.', 'error')

@@ -1,10 +1,8 @@
-from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 import json
-
-db = SQLAlchemy()
+from app import db
 
 # Association tables for many-to-many relationships
 user_bookmarks = db.Table('user_bookmarks',

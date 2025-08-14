@@ -1,4 +1,4 @@
-// AI Assistant for MediCore Library - DeepSeek Integration
+// AI Assistant for TAMSA Library - DeepSeek Integration
 $(document).ready(function() {
     
     const aiToggle = $('#ai-toggle');

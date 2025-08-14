@@ -1,5 +1,38 @@
-// Main JavaScript for MediCore Library
+// Main JavaScript for TAMSA Library
 $(document).ready(function() {
+
+    // ===== THEME SWITCHER =====
+    const themeSwitcher = $('#theme-switcher');
+    const darkThemeStyle = $('#dark-theme-style');
+    const body = $('body');
+    const themeIcon = themeSwitcher.find('i');
+
+    function setTheme(theme) {
+        if (theme === 'dark') {
+            body.addClass('dark-mode');
+            darkThemeStyle.prop('disabled', false);
+            themeIcon.removeClass('fa-moon').addClass('fa-sun');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            body.removeClass('dark-mode');
+            darkThemeStyle.prop('disabled', true);
+            themeIcon.removeClass('fa-sun').addClass('fa-moon');
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    // Apply theme on page load
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+
+    themeSwitcher.on('click', function() {
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'light') {
+            setTheme('dark');
+        } else {
+            setTheme('light');
+        }
+    });
     
     // ===== GLOBAL SEARCH FUNCTIONALITY =====
     let searchTimeout;
@@ -578,7 +611,7 @@ $(document).ready(function() {
 });
 
 // ===== GLOBAL FUNCTIONS =====
-window.MediCore = {
+window.TAMSA = {
     showToast: function(message, type = 'info') {
         // Use the showToast function defined above
         $(document).trigger('show-toast', [message, type]);
